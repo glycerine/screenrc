@@ -1,0 +1,78 @@
+escape ^zz
+startup_message off
+#nethack on
+
+# remember my splits when reattaching - disabled now for screenwm
+# layout autosave on
+
+# http://everything2.com/title/screen
+
+# The rest of this .screenrc file is from http://github.com/mileszs/dotfiles/blob/5a74d9a18c9061b0a8534efb306ca8348ddb7735/screenrc
+
+#
+# Original Author: Aaron Schaefer <aaron@elasticdog.com>
+# Created: Sat 05 Aug 2006 06:38:47 PM EDT
+#
+# Settings used to initialize screen sessions
+term screen-256color
+# Change default escape sequence from C-a to a backslash
+# escape `` # default ^Aa
+
+# Do not display the copyright page
+  startup_message off # default: on
+
+# Change the number of scrollback lines
+  defscrollback 1000 # default: 100
+
+# Ensure the default shell is the same as the $SHELL environment variable
+  shell -$SHELL
+
+# Make navigating between regions easier
+  bind s split
+  bind o focus
+
+  bind j focus down
+  bind k focus up
+  bind h focus left
+  bind l focus right
+  bind t focus top
+  bind b focus bottom
+
+# Make resizing regions easier
+  bind = resize =
+  bind + resize +1
+  bind - resize -1
+
+# Configure status bar at the bottom of the terminal
+  hardstatus alwayslastline
+  hardstatus string "%{= kb}[ %=%{w}%?%-Lw%?%{C}(%{W}%n*%f %t%?(%u)%?%{C})%{w}%?%+Lw%?%?%= %{b}][%{C} %Y.%m.%d %{W}%0c %{b}]"
+
+# Turn off the visual bell
+  vbell off
+
+# End of file
+
+# jea added: start screenwm; see http://sourceforge.net/projects/screenwm/
+#  and ~jaten/pkg/screenwm-1.0
+## eval screen "exec /home/jaten/.screenwmrc init"
+
+# don't wait after reciving commands!
+msgwait 0
+
+# try to enable scrollbars - by using a terminal emulator buffer?
+#termcapinfo xterm|xterms|xs|rxvt ti@:te@
+
+bindkey "^[k" eval "copy" "stuff ^b"  # enter copy mode and move up one page
+###### bindkey "^k" eval "copy" "stuff k"    # enter copy mode and move up one line
+bindkey -m "^[k" stuff ^b             # move up one page
+###### bindkey -m "^k" stuff k               # move up one line
+
+#bindkey "^[j" eval "copy" "stuff ^f"  # enter copy mode and move down one page
+#bindkey "^j" eval "copy" "stuff j"  # enter copy mode and move down one line
+
+
+
+# and we want ctrn-l to be escape mode move right (actually just regular l in escape mode moves right)
+# and this didn't work! and it shut off the color highlighting.
+##bindkey "^l" eval "copy" "stuff l"  
+
